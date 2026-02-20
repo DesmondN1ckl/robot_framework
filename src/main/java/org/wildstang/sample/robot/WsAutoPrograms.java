@@ -1,6 +1,8 @@
 package org.wildstang.sample.robot;
 
+import org.wildstang.framework.auto.AutoProgram;
 import org.wildstang.framework.core.AutoPrograms;
+import org.wildstang.framework.core.Core;
 
 
 /**
@@ -49,5 +51,9 @@ public enum WsAutoPrograms implements AutoPrograms {
     @Override
     public Class<?> getProgramClass() {
         return programClass;
+    }
+
+    public AutoProgram get() {
+        return Core.getAutoManager().getRunningProgram();
     }
 }

@@ -1,6 +1,8 @@
 package org.wildstang.sample.robot;
 
+import org.wildstang.framework.core.Core;
 import org.wildstang.framework.core.Subsystems;
+import org.wildstang.framework.subsystems.Subsystem;
 import org.wildstang.sample.subsystems.LED.LedController;
 import org.wildstang.sample.subsystems.swerve.SwerveDrive;
 import org.wildstang.sample.subsystems.targeting.WsPose;
@@ -52,5 +54,9 @@ public enum WsSubsystems implements Subsystems {
     @Override
     public Class<?> getSubsystemClass() {
         return subsystemClass;
+    }
+
+    public Subsystem get() {
+        return Core.getSubsystemManager().getSubsystem(this);
     }
 }
