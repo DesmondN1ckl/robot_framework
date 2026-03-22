@@ -1,0 +1,64 @@
+package org.wildstang.framework.auto.steps.control;
+
+import org.wildstang.framework.auto.AutoStep;
+
+import edu.wpi.first.wpilibj.Timer;
+
+
+public class AutoTimedStep extends AutoStep {
+
+    private final Timer timer = new Timer();
+    private double timeLimit;
+    private AutoStep inner;
+
+    /**
+     * Constructing creates a new step that auto terminates after given time
+     * @param time Number of seconds to wait before finishing.
+     */
+    public AutoTimedStep(AutoStep autoStep, int timeLimit) {
+        this.inner = autoStep;
+        
+        if (timeLimit < 0) {
+            throw new IllegalArgumentException("timeLimit must be > 0");
+        } else {
+            this.timeLimit = timeLimit;
+        }
+    }
+
+    public AutoTimedStep(AutoStep autoStep) {
+        this.inner = autoStep;
+        this.timeLimit = 5; // default to 5 seconds
+    }
+
+    /**
+     * Starts the timer on initialization.
+     */
+    @Override
+    public void initialize() {
+        timer.restart();
+
+        inner.initialize();
+    }
+
+    /**
+     * Once timer has passed the AutoStep finishes.
+     */
+    @Override
+    public void update() {
+        inner.update();
+
+        if (timer.hasElapsed(timeLimit) || inner.isFinished()) {
+            timer.stop();
+            setFinished();
+        }
+    }
+
+    /**
+     * Returns the name of the AutoStep, "AutoStep with X seconds remaining".
+     * @return Name of the AutoStep.
+     */
+    @Override
+    public String toString() {
+        return "AutoStep with " + (timeLimit - timer.get()) + " seconds remaining";
+    }
+}
