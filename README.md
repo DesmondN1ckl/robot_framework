@@ -21,7 +21,7 @@ It is the foundation of each robot, providing hardware enumerations, autonomous 
 - Radio Configuration
   - [Instructions](https://frc-radio.vivid-hosting.net/overview/quick-start-guide)
 - REV Hardware Client
-  - [Instructions & Download](https://docs.revrobotics.com/rev-hardware-client/gs/install)
+  - [Instructions & Download](https://docs.revrobotics.com/rev-hardware-client-2)
 - Phoenix 6
   - [Instructions](https://v6.docs.ctr-electronics.com/en/stable/docs/installation/installation-frc.html)
   - [Download](https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/latest)
